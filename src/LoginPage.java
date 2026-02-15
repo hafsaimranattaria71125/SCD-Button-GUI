@@ -58,11 +58,8 @@ public class LoginPage {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int currentX = fr.getLocation().x;
-                int currentY = fr.getLocation().y;
-                 // Move only if not at top edge
-                if (currentY - 10 >= 0) {
-                    fr.setLocation(currentX , currentY- 10);
+                while (fr.getLocation().y - 10 >= 0) {  
+                    fr.setLocation(fr.getLocation().x , fr.getLocation().y- 10);
                 }
                 
             }
@@ -73,9 +70,8 @@ public class LoginPage {
             @Override
             public void actionPerformed(ActionEvent e) {
             
-               int newY = fr.getLocation().y + 10;
-               if (newY <= screen.height - fr.getHeight()) {
-                       fr.setLocation(fr.getLocation().x,newY);
+               while (fr.getLocation().y + 10 <= screen.height - fr.getHeight()) {
+                       fr.setLocation(fr.getLocation().x,fr.getLocation().y + 10);
                }
               
             }
@@ -85,9 +81,8 @@ public class LoginPage {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int newX = fr.getLocation().x + 10;
-                if (newX <= screen.width - fr.getWidth()) {
-                       fr.setLocation(newX,fr.getLocation().y);
+                while (fr.getLocation().x + 10 <= screen.width - fr.getWidth()) {
+                       fr.setLocation(fr.getLocation().x + 10,fr.getLocation().y);
                }
             }
         });
@@ -97,11 +92,9 @@ public class LoginPage {
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int currentX = fr.getLocation().x;
-                int currentY = fr.getLocation().y;
                  // Move only if not at left edge
-                if (currentX - 10 >= 0) {
-                    fr.setLocation(currentX - 10, currentY);
+                while (fr.getLocation().x - 10 >= 0) {
+                    fr.setLocation(fr.getLocation().x - 10, fr.getLocation().y);
                 }
             }
          

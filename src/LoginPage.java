@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,6 +30,8 @@ public class LoginPage {
     JButton btn4;
     //BtnHandler hnd;
     
+    Dimension screen;
+    
     public LoginPage() {
         initGUI();
      }
@@ -35,6 +40,8 @@ public class LoginPage {
     {
         //step 
         fr = new JFrame();
+        screen = Toolkit.getDefaultToolkit().getScreenSize();
+
       //  hnd = new BtnHandler();
                
         //obtain layout manager and set layout
@@ -51,7 +58,13 @@ public class LoginPage {
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fr.setLocation(fr.getLocation().x ,fr.getLocation().y-10);
+                int currentX = fr.getLocation().x;
+                int currentY = fr.getLocation().y;
+                 // Move only if not at top edge
+                if (currentY - 10 >= 0) {
+                    fr.setLocation(currentX , currentY- 10);
+                }
+                
             }
         });
         btn2 = new JButton("DOWN");
@@ -59,7 +72,12 @@ public class LoginPage {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fr.setLocation(fr.getLocation().x ,fr.getLocation().y+10 );
+            
+               int newY = fr.getLocation().y + 10;
+               if (newY <= screen.height - fr.getHeight()) {
+                       fr.setLocation(fr.getLocation().x,newY);
+               }
+              
             }
         });
         btn3 = new JButton("RIGHT");
@@ -67,7 +85,10 @@ public class LoginPage {
         btn3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fr.setLocation(fr.getLocation().x +10,fr.getLocation().y );
+                int newX = fr.getLocation().x + 10;
+                if (newX <= screen.width - fr.getWidth()) {
+                       fr.setLocation(newX,fr.getLocation().y);
+               }
             }
         });
         
@@ -76,8 +97,14 @@ public class LoginPage {
         btn4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fr.setLocation(fr.getLocation().x -10,fr.getLocation().y );
+                int currentX = fr.getLocation().x;
+                int currentY = fr.getLocation().y;
+                 // Move only if not at left edge
+                if (currentX - 10 >= 0) {
+                    fr.setLocation(currentX - 10, currentY);
+                }
             }
+         
         });
         
         //attach event handlers with compo
